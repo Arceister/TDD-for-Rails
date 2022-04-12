@@ -41,6 +41,18 @@ RSpec.describe Food, type: :model do
     expect(food2.errors[:name]).to include("has already been taken")
   end
 
+  it "is invalid with non numeric price" do
+    food = Food.new(
+      name: 'Nasi Uduk',
+      description: 'Betawi style steamed rice cooked in coconut milk. Delicious!',
+      price: '15000.0'
+    )
+
+    food.valid?
+
+    expect(food.errors[:price]).to include("doesn't accept numeric value")
+  end
+
   describe 'self#by_letter' do
     it "should return a sorted array of results that match" do
       food1 = Food.create(
