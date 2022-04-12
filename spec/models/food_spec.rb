@@ -45,12 +45,12 @@ RSpec.describe Food, type: :model do
     food = Food.new(
       name: 'Nasi Uduk',
       description: 'Betawi style steamed rice cooked in coconut milk. Delicious!',
-      price: '15000.0'
+      price: 'Limabelas'
     )
 
     food.valid?
 
-    expect(food.errors[:price]).to include("doesn't accept numeric value")
+    expect(food[:price]).to be_kind_of(Numeric)
   end
 
   describe 'self#by_letter' do
