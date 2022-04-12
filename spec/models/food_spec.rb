@@ -42,7 +42,7 @@ RSpec.describe Food, type: :model do
   end
 
   it "is invalid with non numeric price" do
-    food = Food.new(
+    food = Food.create(
       name: 'Nasi Uduk',
       description: 'Betawi style steamed rice cooked in coconut milk. Delicious!',
       price: 'Limabelas'
@@ -50,7 +50,7 @@ RSpec.describe Food, type: :model do
 
     food.valid?
 
-    expect(food[:price]).to be_kind_of(Numeric)
+    expect(food.errors[:name]).to include("is not a number")
   end
 
   describe 'self#by_letter' do
