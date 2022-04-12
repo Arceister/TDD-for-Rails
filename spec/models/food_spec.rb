@@ -49,8 +49,8 @@ RSpec.describe Food, type: :model do
     )
 
     food.valid?
-
-    expect(food.errors[:name]).to include("is not a number")
+    
+    expect(food.errors[:price]).to.include("is not a number")
   end
 
   describe 'self#by_letter' do
