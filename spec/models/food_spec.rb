@@ -53,6 +53,18 @@ RSpec.describe Food, type: :model do
     expect(food.errors[:price]).to include("is not a number")
   end
 
+  it "is invalid with price lower than 0.01" do
+    food = Food.create(
+      name: 'Nasi Uduk',
+      description: 'Betawi style steamed rice cooked in coconut milk. Delicious!',
+      price: 0.00
+    )
+
+    food.valid?
+
+    expect(food.errors[:price]).to include("must be greater than 0.01") 
+  end
+
   describe 'self#by_letter' do
     it "should return a sorted array of results that match" do
       food1 = Food.create(
